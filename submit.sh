@@ -1,6 +1,7 @@
 #!/bin/sh
 
-bitcoin-cli -stdin submitpackage < package
+bitcoin-cli -stdin submitpackage < package \
+  | grep '^    "' | grep -o '[0-9a-f]\+'
 
 ls tx/???? | while read tx
 do
