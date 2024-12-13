@@ -1,0 +1,38 @@
+I just want to share a Linux hack I use to synchronize Bitcoin
+mempool between two nodes, one of which is publicly accessible
+over IPv4 and the other is not:
+
+as user
+
+    touch ~/.bitcoin/mempool.dat.new /dev/shm/mempool.dat.new
+
+as root (or unshared like in enter-alpine.sh)
+
+    mount -o rw,bind /dev/shm/mempool.dat.new /home/user/.bitcoin/mempool.dat.new
+
+as user running Bitcoin call savemempool RPC which ends with error but the
+file is saved in RAM tmpfs and is OK. Now just transfer that mempool.dat.newi
+file to RAM tmpfs of the non-public host which does not have full mempool yet
+and call importmempool /dev/shm/mempool.dat.new there.
+
+Takes seconds on my recycled laptops running Bitcoin Core nodes.
+
+```
+chronos:~$ bitcoin-cli getmempoolinfo
+{
+  "loaded": true,
+  "size": 88197,
+  "bytes": 52553859,
+  "usage": 291363840,
+  "total_fee": 0.92974767,
+  "maxmempool": 300000000,
+  "mempoolminfee": 0.00001808,
+  "minrelaytxfee": 0.00001000,
+  "incrementalrelayfee": 0.00001000,
+  "unbroadcastcount": 42,
+  "fullrbf": true
+}
+chronos:~$ date -u | tee /tmp/date | ws.sh; cat /tmp/date
+ws 874555-e93a65
+Fri Dec 13 11:26:38 UTC 2024
+```
