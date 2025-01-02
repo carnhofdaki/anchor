@@ -12,9 +12,17 @@ Testnet3: [tb1pfees9rn5nz](https://mempool.space/testnet/address/tb1pfees9rn5nz)
 
 ## submit.sh
 
-```sh
-$ ./submit.sh
-55f8e9633896787351a8215eed1b9b3b34b1e4c78a0a1d4106f9efef873a0031
-b9996ee3743ea0e6241cf63bb457aa82cc321b0769303c11a126e882d61a4206
-ebcfdab4f618cebe9c6ff9da96179c650507177b3e47179616123f9cd751df10
-```
+This script was used to make sure anchor spending transactions
+are both in local node's mempool and at public mempool.space.
+
+# Misc
+
+Nice ephemeral advertisement. For the record:
+
+https://mempool.space/tx/d7da3b5ae755793ff486896e82553d841043df393f09593ec38b807dd2959c45
+
+had an already-replaced version
+`0c4caa8b2e346adcab1a19720429f310e077453041572368ddb2b7e5b74bca16`
+with link to following address:
+
+https://mempool.space/address/bc1pws6pvj75rcsc2eglpp9k570prnjh40nfpyahlyumk8y8smjayvasyhns5c
